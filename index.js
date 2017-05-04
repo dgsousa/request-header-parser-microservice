@@ -18,7 +18,7 @@ const homeRoute = (req, res) => {
 	req.on("end", () => {
 		res.writeHead(200, {"Content-type": "text/html"});
 		res.write(JSON.stringify({
-			"ipaddress": req.ip,
+			"ipaddress": req.headers["x-forwarded-for"],
 			"language": req.headers["accept-language"].split(",")[0],
 			"software": req.headers["user-agent"].split(/\(|\)/)[1]
 		}));
